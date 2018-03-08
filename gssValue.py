@@ -124,10 +124,10 @@ def main():
     #symbool_list = ['QCOM','AAPL','BUD','RIG','MSFT','BABA','SU','YUM','GILD','AMGN','BXP','CSCO','TXN','NVDA']
 
 
-    #symbool_list = ['TSLA','INTC','BIIB','IBM','INFY','SWKS','TGT','M','BIDU','FB','JPM','PCLN','KSS','C']
+    symbool_list = ['TSLA','INTC','BIIB','IBM','AAPL','QCOM','AVGO','CVS','NVDA','FB','EXPE','GS','AMZN','GOOG']
 
 
-    symbool_list = ['QCOM','AAPL','AVGO','WMT']
+    #symbool_list = ['QCOM','AAPL','AVGO','WMT']
  
 
     for symbol in symbool_list:
