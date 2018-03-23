@@ -76,7 +76,7 @@ def get_data():
     
     spreadsheetId, service = get_sheetDetails()
     
-    rangeName = 'E68:68'
+    rangeName = 'E83:83'
 
     result = service.spreadsheets().values().get(
         spreadsheetId=spreadsheetId, range=rangeName).execute()
