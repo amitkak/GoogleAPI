@@ -189,6 +189,82 @@ def get_pct():
             return row[0]
 
 
+def get_Vol():
+
+    spreadsheetId, service = get_sheetDetails()
+
+    rangeName = 'F91:F91'
+
+    result = service.spreadsheets().values().get(
+        spreadsheetId=spreadsheetId, range=rangeName).execute()
+    values = result.get('values', [])
+
+    if not values:
+        print('No data found.')
+    else:
+        #print('Name, Major:')
+        for row in values:
+            # Print columns A and E, which correspond to indices 0 and 4.
+            #print('%s, %s' % (row[0], row[1]))
+            return row[0]
+
+def get_avgVol():
+
+    spreadsheetId, service = get_sheetDetails()
+
+    rangeName = 'F92:F92'
+
+    result = service.spreadsheets().values().get(
+        spreadsheetId=spreadsheetId, range=rangeName).execute()
+    values = result.get('values', [])
+
+    if not values:
+        print('No data found.')
+    else:
+        #print('Name, Major:')
+        for row in values:
+            # Print columns A and E, which correspond to indices 0 and 4.
+            #print('%s, %s' % (row[0], row[1]))
+            return row[0]
+
+def get_pe():
+
+    spreadsheetId, service = get_sheetDetails()
+
+    rangeName = 'F93:F93'
+
+    result = service.spreadsheets().values().get(
+        spreadsheetId=spreadsheetId, range=rangeName).execute()
+    values = result.get('values', [])
+
+    if not values:
+        print('No data found.')
+    else:
+        #print('Name, Major:')
+        for row in values:
+            # Print columns A and E, which correspond to indices 0 and 4.
+            #print('%s, %s' % (row[0], row[1]))
+            return row[0]
+
+def get_eps():
+
+    spreadsheetId, service = get_sheetDetails()
+
+    rangeName = 'F94:F94'
+
+    result = service.spreadsheets().values().get(
+        spreadsheetId=spreadsheetId, range=rangeName).execute()
+    values = result.get('values', [])
+
+    if not values:
+        print('No data found.')
+    else:
+        #print('Name, Major:')
+        for row in values:
+            # Print columns A and E, which correspond to indices 0 and 4.
+            #print('%s, %s' % (row[0], row[1]))
+            return row[0]
+
 def update_cell(symbol):
 
     
@@ -239,10 +315,10 @@ def main():
         hi52 = get_hi()
         lo52 = get_lo()
         change= get_pct()
-        eps = 0
-        pe = 0
-        avgvol = 0
-        vol = 0
+        eps = get_eps()
+        pe = get_pe()
+        avgvol = get_avgVol()
+        vol = get_Vol()
 
         #print ("++++++++++++++++++++++++++++++++")
         f1.write("Company\t" + symbol + "\tVOL\t" + str(vol) + "\tAVGVOL\t"   + str(avgvol)  + "\tPCENTCHG\t" + str(change) + "\tEPS\t" + str(eps) + "\tPE\t" + str(pe) +"\n")
