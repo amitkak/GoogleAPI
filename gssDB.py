@@ -9,8 +9,45 @@ from oauth2client import client
 from oauth2client import tools
 from oauth2client.file import Storage
 
-f1 = open("vol.dat","w")
-f2 = open("chg.dat", "w")
+f1 = open('change.dat', 'w')
+f2 = open('price.dat', 'w')
+
+s =  \
+"""AAPL
+ACN
+AMGN
+AVGO
+BIIB
+CELG
+COST
+CSCO
+CVS
+DIS
+GILD
+GOOGL
+IBM
+IBB
+XLF
+XLE
+XLK
+INTC
+JPM
+MCD
+MSFT
+NKE
+NVDA
+ORCL
+QCOM
+AMZN
+SBUX
+SPY"""
+
+
+
+lines = s.split('\n')
+#print(lines)
+my_list = lines
+
 
 try:
     import argparse
@@ -187,15 +224,16 @@ def main():
     #symbool_list = ['QCOM','AAPL','BUD','RIG','MSFT','BABA','SU','YUM','GILD','AMGN','BXP','CSCO','TXN','NVDA']
 
 
-    symbool_list = ['TSLA','INTC','BIIB','IBM','AAPL','QCOM','AVGO','CVS','NVDA','FB','EXPE','GS','AMZN','GOOG']
+    #:symbool_list = ['TSLA','INTC','BIIB','IBM','AAPL','QCOM','AVGO','CVS','NVDA','FB','EXPE','GS','AMZN','GOOG']
 
 
     #symbool_list = ['QCOM','AAPL','AVGO','WMT']
  
 
-    for symbol in symbool_list:
-        print ("++++++++++++++++++++++++++++++++")
+    for symbol in my_list:
+        #print ("++++++++++++++++++++++++++++++++")
         print (symbol)
+        print()
         update_cell(symbol)
         price = get_price()
         hi52 = get_hi()
@@ -206,7 +244,7 @@ def main():
         avgvol = 0
         vol = 0
 
-        print ("++++++++++++++++++++++++++++++++")
+        #print ("++++++++++++++++++++++++++++++++")
         f1.write("Company\t" + symbol + "\tVOL\t" + str(vol) + "\tAVGVOL\t"   + str(avgvol)  + "\tPCENTCHG\t" + str(change) + "\tEPS\t" + str(eps) + "\tPE\t" + str(pe) +"\n")
         f2.write("Company\t" + symbol + "\t52 Week Range\t" + str(lo52) + "-" + str(hi52) +  "\tPrice\t" + str(price) + "\tEPS\t" + str(eps)+ "\tPE\t" + str (pe)+"\n")
 
