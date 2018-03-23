@@ -77,7 +77,7 @@ def get_data():
     spreadsheetId, service = get_sheetDetails()
     
     #rangeName = 'E53:F67'
-    rangeName = 'E54:F62'
+    rangeName = 'E66:F70'
 
     result = service.spreadsheets().values().get(
         spreadsheetId=spreadsheetId, range=rangeName).execute()
@@ -109,11 +109,10 @@ def update_cell(symbol):
         'values': values
     }
 
-    rangeName = 'A68'
+    rangeName = 'A76'
     value_input_option = 'USER_ENTERED'
     #value_input_option = 'QCOM'
     result = service.spreadsheets().values().update(spreadsheetId=spreadsheetId,range = rangeName, valueInputOption=value_input_option, body=body).execute()
-    time.sleep(6)
 
     
 
@@ -124,8 +123,9 @@ def main():
 
     #symbool_list = ['QCOM','AAPL','BUD','RIG','MSFT','BABA','SU','YUM','GILD','AMGN','BXP','CSCO','TXN','NVDA']
 
+    symbool_list = ['TSLA','INTC','BIIB','IBM','AAPL','QCOM','AVGO','CVS','NVDA','FB','EXPE','GS','AMZN','GOOG']
 
-    symbool_list = ['AAPL','QCOM','WMT','AVGO','CVS']
+   # symbool_list = ['AAPL','QCOM','WMT','AVGO','CVS']
  
 
     for symbol in symbool_list:
@@ -133,7 +133,9 @@ def main():
         print ("++++++++++++++++++++++++++++++++")
         print ("++++++++++++++++++++++++++++++++")
         update_cell(symbol)
+        time.sleep(8)
         get_data()
+        time.sleep(4)
         print ("++++++++++++++++++++++++++++++++")
         print ("++++++++++++++++++++++++++++++++")
         print ("++++++++++++++++++++++++++++++++")

@@ -76,7 +76,7 @@ def get_data():
     
     spreadsheetId, service = get_sheetDetails()
     
-    rangeName = 'E60:60'
+    rangeName = 'E68:68'
 
     result = service.spreadsheets().values().get(
         spreadsheetId=spreadsheetId, range=rangeName).execute()
@@ -108,7 +108,7 @@ def update_cell(symbol):
         'values': values
     }
 
-    rangeName = 'A68'
+    rangeName = 'A76'
     value_input_option = 'USER_ENTERED'
     #value_input_option = 'QCOM'
     result = service.spreadsheets().values().update(spreadsheetId=spreadsheetId,range = rangeName, valueInputOption=value_input_option, body=body).execute()
