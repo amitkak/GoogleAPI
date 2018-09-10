@@ -1,3 +1,4 @@
+#!~/anaconda3/bin/python
 
 from __future__ import print_function
 import httplib2
@@ -298,7 +299,6 @@ def main():
     for symbol in my_list:
         #print ("++++++++++++++++++++++++++++++++")
         print (symbol)
-        print()
         update_cell(symbol)
         price = get_price()
         hi52 = get_hi()
@@ -309,6 +309,7 @@ def main():
         avgvol = get_avgVol()
         vol = get_Vol()
 
+        print( vol, avgvol , change, eps, pe, price)
         #print ("++++++++++++++++++++++++++++++++")
         f1.write("Company\t" + symbol + "\tVOL\t" + str(vol) + "\tAVGVOL\t"   + str(avgvol)  + "\tPCENTCHG\t" + str(change) + "\tEPS\t" + str(eps) + "\tPE\t" + str(pe) +"\n")
         f2.write("Company\t" + symbol + "\t52 Week Range\t" + str(lo52) + "-" + str(hi52) +  "\tPrice\t" + str(price) + "\tEPS\t" + str(eps)+ "\tPE\t" + str (pe)+"\n")
