@@ -13,34 +13,23 @@ f1 = open('change.dat', 'w')
 f2 = open('price.dat', 'w')
 
 s =  \
-"""AAPL
-ACN
-AMGN
+"""QCOM
+FB
+AMZN
 AVGO
-BIIB
-CELG
-COST
-CSCO
-CVS
-DIS
-GILD
+AAPL
+NFLX
+NVDA
 GOOGL
 IBM
-IBB
-XLF
-XLE
-XLK
+BIDU
+GS
+BKNG
+TSLA
+CMG
+BABA
 INTC
-JPM
-MCD
-MSFT
-NKE
-NVDA
-ORCL
-QCOM
-AMZN
-SBUX
-SPY"""
+MSFT"""
 
 
 
