@@ -10,7 +10,7 @@ from oauth2client import tools
 from oauth2client.file import Storage
 
 f1 = open('normalized_peg.dat', 'w')
-f2 = open('normalized_eps.dat', 'w')
+#f2 = open('normalized_eps.dat', 'w')
 
 s =  \
 """QCOM
@@ -18,17 +18,9 @@ FB
 AMZN
 AVGO
 AAPL
-NFLX
 NVDA
 GOOGL
-IBM
-BIDU
-GS
-BKNG
-TSLA
-CMG
 BABA
-INTC
 MSFT"""
 
 
@@ -97,7 +89,7 @@ def get_sheetDetails():
        rangeName = 'Class Data!A2:E'
     """
     #spreadsheetId = '1TVremAZCmLjXD-q6FbHxdVR5-xMdt73O4qXMEXodKF8'
-    spreadsheetId = '1kEETTM4Qt3lHrlWfzJPc6VkdLzYz0kSRi9_zBWPwQHI'
+    spreadsheetId = '1rhY5lQqgdAlyuEnhG4iRfkIRDNafejq43YTkjlXg1OI'
     return spreadsheetId,service
 
 
@@ -105,7 +97,7 @@ def get_NormalizedEPS():
     
     spreadsheetId, service = get_sheetDetails()
     
-    rangeName = 'F98:F98'
+    rangeName = 'F71:F71'
 
     result = service.spreadsheets().values().get(
         spreadsheetId=spreadsheetId, range=rangeName).execute()
@@ -123,7 +115,7 @@ def get_NormalizedPE():
 
     spreadsheetId, service = get_sheetDetails()
 
-    rangeName = 'F99:F99'
+    rangeName = 'F72:F72'
 
     result = service.spreadsheets().values().get(
         spreadsheetId=spreadsheetId, range=rangeName).execute()
@@ -143,7 +135,7 @@ def get_NormalizedPEG():
 
     spreadsheetId, service = get_sheetDetails()
 
-    rangeName = 'F95:F95'
+    rangeName = 'F68:F68'
 
     result = service.spreadsheets().values().get(
         spreadsheetId=spreadsheetId, range=rangeName).execute()
@@ -162,7 +154,7 @@ def get_ProfitMargin():
 
     spreadsheetId, service = get_sheetDetails()
 
-    rangeName = 'F102:F102'
+    rangeName = 'F75:F75'
 
     result = service.spreadsheets().values().get(
         spreadsheetId=spreadsheetId, range=rangeName).execute()
@@ -182,7 +174,7 @@ def get_EquityShare():
 
     spreadsheetId, service = get_sheetDetails()
 
-    rangeName = 'F106:F106'
+    rangeName = 'F79:F79'
 
     result = service.spreadsheets().values().get(
         spreadsheetId=spreadsheetId, range=rangeName).execute()
@@ -200,8 +192,8 @@ def get_EquityShare():
 def get_ExpectedPrice():
 
     spreadsheetId, service = get_sheetDetails()
-
-    rangeName = 'F63:F63'
+    time.sleep(10)
+    rangeName = 'F37:F37'
 
     result = service.spreadsheets().values().get(
         spreadsheetId=spreadsheetId, range=rangeName).execute()
@@ -220,7 +212,7 @@ def get_Price():
 
     spreadsheetId, service = get_sheetDetails()
 
-    rangeName = 'F62:F62'
+    rangeName = 'F36:F36'
 
     result = service.spreadsheets().values().get(
         spreadsheetId=spreadsheetId, range=rangeName).execute()
@@ -239,7 +231,7 @@ def get_eps():
 
     spreadsheetId, service = get_sheetDetails()
 
-    rangeName = 'F94:F94'
+    rangeName = 'F53:F53'
 
     result = service.spreadsheets().values().get(
         spreadsheetId=spreadsheetId, range=rangeName).execute()
@@ -273,11 +265,11 @@ def update_cell(symbol):
         'values': values
     }
 
-    rangeName = 'A76'
+    rangeName = 'A51'
     value_input_option = 'USER_ENTERED'
     #value_input_option = 'QCOM'
     result = service.spreadsheets().values().update(spreadsheetId=spreadsheetId,range = rangeName, valueInputOption=value_input_option, body=body).execute()
-    time.sleep(6)
+    time.sleep(8)
 
     
 
@@ -303,22 +295,21 @@ def main():
         normPEG = get_NormalizedPEG()
         normPE  = get_NormalizedPE()
         normEPS = get_NormalizedEPS()
-        profitMargin  = get_ProfitMargin()
-        eps = get_eps()
-        ExpPrice = get_ExpectedPrice()
-        Price = get_Price()
         Equity = get_EquityShare()
+        
+        #eps = get_eps()
+        #ExpPrice = get_ExpectedPrice()
+        #Price = get_Price()
         #print (normEPS)
         #print ("\n++++++++++++++++++++++++++++++++\n")
-        #print (profitMargin)
+        #print (Price)
         #print ("\n++++++++++++++++++++++++++++++++\n")
         #print (Equity)
         #print ("\n++++++++++++++++++++++++++++++++\n")
         
-        print ("++++++++++++++++++++++++++++++++")
-        f1.write("Company\t" + symbol + "\tNORMAL_PEG\t" + str(normPEG) + "\tNORMAL_PE\t"   + str(normPE)  + "\tNORMAL_EPS\t" + str(normEPS) + "\tEQUITY\t" + str(Equity) + "\tPROFIT_MGN\t" + str(profitMargin) +"\n")
-        f2.write("Company\t" + symbol + "\tExpPrice\t" + str(ExpPrice)  +  "\tPrice\t" + str(Price) + "\tEPS\t" + str(eps)+ "\tNORMAL_EPS\t" + str (normEPS)+"\n")
-
+        #print ("++++++++++++++++++++++++++++++++")
+        f1.write("Company\t" + symbol + "\tNORMAL_PEG\t" + str(normPEG) + "\tNORMAL_PE\t"   + str(normPE)  + "\tNORMAL_EPS\t" + str(normEPS) + "\tEQUITY\t" + str(Equity)  +"\n")
+        
 
 
 if __name__ == '__main__':

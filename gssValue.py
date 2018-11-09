@@ -68,29 +68,30 @@ def get_sheetDetails():
        rangeName = 'Class Data!A2:E'
     """
     #spreadsheetId = '1TVremAZCmLjXD-q6FbHxdVR5-xMdt73O4qXMEXodKF8'
-    spreadsheetId = '1SZma3WDG8UrNrvDYT7MErSXlcpLa0VPbWwQlMBkeN6c'
+    spreadsheetId = '1rhY5lQqgdAlyuEnhG4iRfkIRDNafejq43YTkjlXg1OI'
     return spreadsheetId,service
 
+def get_ExpectedPrice():
 
-def get_data():
-    
     spreadsheetId, service = get_sheetDetails()
-    
-    rangeName = 'E83:83'
+
+    rangeName = 'F40:F40'
 
     result = service.spreadsheets().values().get(
         spreadsheetId=spreadsheetId, range=rangeName).execute()
     values = result.get('values', [])
 
     if not values:
-        print('No data found.')
+        print('get_ExpectedPrice:No data found.')
     else:
         #print('Name, Major:')
         for row in values:
             # Print columns A and E, which correspond to indices 0 and 4.
-            print('%s, %s' % (row[0], row[1]))
+            #print('%s, %s' % (row[0], row[1]))
+            return row[0]
 
 def update_cell(symbol):
+
     
     spreadsheetId, service = get_sheetDetails()
     cell = symbol
@@ -108,11 +109,12 @@ def update_cell(symbol):
         'values': values
     }
 
-    rangeName = 'A76'
+    rangeName = 'A51'
     value_input_option = 'USER_ENTERED'
     #value_input_option = 'QCOM'
     result = service.spreadsheets().values().update(spreadsheetId=spreadsheetId,range = rangeName, valueInputOption=value_input_option, body=body).execute()
-    time.sleep(6)
+    time.sleep(8)
+
 
     
 
@@ -120,21 +122,16 @@ def update_cell(symbol):
 def main():
     """Shows basic usage of the Sheets API."""
 
+    symbool_list = ['IBM','AAPL','QCOM','BABA','NVDA','FB','MSFT','AMZN','GOOGL']
 
-    #symbool_list = ['QCOM','AAPL','BUD','RIG','MSFT','BABA','SU','YUM','GILD','AMGN','BXP','CSCO','TXN','NVDA']
-
-
-    symbool_list = ['TSLA','INTC','BIIB','IBM','AAPL','QCOM','AVGO','CVS','NVDA','FB','EXPE','GS','AMZN','GOOG']
-
-
-    #symbool_list = ['QCOM','AAPL','AVGO','WMT']
+    #symbool_list = ['MSFT','GOOGL','WMT','BABA']
  
 
     for symbol in symbool_list:
         print ("++++++++++++++++++++++++++++++++")
         print (symbol)
         update_cell(symbol)
-        get_data()
+        print (get_ExpectedPrice())
         print ("++++++++++++++++++++++++++++++++")
 
 if __name__ == '__main__':
